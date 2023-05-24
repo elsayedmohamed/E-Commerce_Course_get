@@ -1,47 +1,37 @@
 import 'package:flutter/material.dart';
 
-import 'package:commerce_course/core/constants/colors.dart';
-import 'package:commerce_course/data/data_source/static/static_data.dart';
+import 'package:commerce_course/views/widgets/onboarding/custombutton.dart';
+import 'package:commerce_course/views/widgets/onboarding/dotsonboarding.dart';
+import 'package:commerce_course/views/widgets/onboarding/slideronboarding.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: SafeArea(
-      child: PageView.builder(
-          itemCount: onBoardingList.length,
-          itemBuilder: (context, i) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 30,
+          ),
+          Expanded(flex: 3, child: SliderOnboarding()),
+          Expanded(
+            flex: 1,
+            child: Column(
               children: [
-                Text(
-                  onBoardingList[i].title!.toString(),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Image.asset(onBoardingList[i].imgUrl!),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  child: Text(
-                    onBoardingList[i].body.toString(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      height: 2,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
+                DotsOnBoarding(),
               ],
-            );
-          }),
+            ),
+          ),
+          CustomOnBoardingButton(),
+          Spacer(
+            flex: 1,
+          ),
+        ],
+      ),
     ));
   }
 }
